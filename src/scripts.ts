@@ -27,6 +27,16 @@ const displayError = (input: JQuery<HTMLInputElement>, field: string) => {
     }
 }
 
+const clearError = (input: JQuery<HTMLInputElement>) => {
+    if (input.hasClass('form__input--error')) {
+        input.removeClass('form__input--error')
+            .next('.form__error-msg-wrap')
+            .slideUp(350, function() {
+                $(this).remove()
+            })
+    }
+}
+
 const displaySuccess = () => {
     $('.form__sub-heading')
         .addClass('form__sub-heading--success')
@@ -43,16 +53,22 @@ $<HTMLFormElement>('.form').submit(function(event) {
     if (!isValidName(String(name.val()))) {
         displayError(name, 'name')
         errors++
+    } else {
+        clearError(name)
     }
 
     if (!isValidEmail(String(email.val()))) {
         displayError(email, 'email')
         errors++
+    } else {
+        clearError(name)
     }
 
     if (!isValidPassword(String(password.val()))) {
         displayError(password, 'password')
         errors++
+    } else {
+        clearError(name)
     }
 
     if (!errors) {

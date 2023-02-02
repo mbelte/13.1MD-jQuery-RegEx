@@ -3,7 +3,7 @@ const isValidName = (input: string) => {
 }
 
 const isValidEmail = (input: string) => {
-    return /^(.+)@(.+){2,}\.(.+){2,}/.test(input)
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(input)
 }
 
 const isValidPassword = (input: string) => {
